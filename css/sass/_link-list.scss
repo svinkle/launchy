@@ -1,0 +1,71 @@
+@import 'vars';
+
+.link-list {
+    bottom: 0;
+    left: 50%;
+    list-style-type: none;
+    margin-left: -50%;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.link-list__item {
+    display: inline-block;
+    margin: 0;
+}
+
+.link-list__link {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+        .link-list__tooltip {
+            bottom: 100%;
+            opacity: 1;
+        }
+    }
+}
+
+.link-list__icon {
+    fill: $white;
+    height: 32px;
+    width: 32px;
+}
+
+.link-list__tooltip {
+    background-color: $off-black;
+    border-radius: 3px;
+    bottom: 110%;
+    color: $white;
+    display: inline-block;
+    font-size: .75em;
+    left: 50%;
+    margin-left: -50%;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    text-align: center;
+    transition: all .3s ease;
+    width: 100%;
+
+    &::before {
+        border: solid transparent 5px;
+        border-top: solid $off-black 5px;
+        content: '';
+        height: 0;
+        left: 50%;
+        margin-left: -5px;
+        position: absolute;
+        top: 100%;
+        width: 0;
+    }
+}
+
+.svg-sprite {
+    display: none;
+}

@@ -1,0 +1,88 @@
+@import 'vars';
+@import 'global';
+@import 'link-list';
+
+[data-launchy] {
+    display: none;
+}
+
+.modal__window {
+    background-color: $off-white;
+    border: transparent solid 1px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 10px $black;
+    display: none;
+    max-width: 30em;
+    padding: 2em;
+    position: absolute;
+    z-index: 9999;
+
+    &--is-visible {
+        display: block;
+
+        [data-launchy] {
+            display: block;
+        }
+    }
+}
+
+.modal__content {
+    position: relative;
+}
+
+.modal__overlay {
+    background-color: $black;
+    background-color: $overlay-bg;
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9998;
+
+    &--is-visible {
+        display: block;
+    }
+}
+
+.modal__close-link {
+    background-color: $purple;
+    border-radius: 3px;
+    color: $white;
+    display: inline-block;
+    font-size: 1.25em;
+    padding: .15em .5em;
+    position: absolute;
+    right: -1em;
+    text-decoration: none;
+    top: -1em;
+
+    &:focus,
+    &:hover {
+        background-color: $dark-purple;
+        color: $white;
+    }
+}
+
+.modal__title {
+    font-family: $main-font;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.modal__launch-link {
+    color: $white;
+    display: inline-block;
+    font-family: $main-font;
+    font-size: 3.5em;
+    font-weight: 700;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px $black;
+
+    &:focus,
+    &:hover {
+        color: $white;
+        text-decoration: underline;
+    }
+}

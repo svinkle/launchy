@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    align-items: center;
+    background-color: $off-black;
+    background-image: radial-gradient(circle at center, $light-purple, $purple);
+    display: flex;
+    font-family: $logo-font;
+    height: 100vh;
+    justify-content: center;
+    position: relative;
+}
+
+a {
+    color: $purple;
+    text-decoration-skip: ink;
+
+    &:focus,
+    &:hover {
+        color: $dark-purple;
+    }
+}
+
+hr {
+    border: solid transparent 1px;
+    border-top: solid $light-gray 1px;
+    height: 0;
+    margin: 1.5em 0;
+    width: 100%;
+}
+
+button {
+    background-color: $purple;
+    border: 0;
+    border-radius: 3px;
+    color: $white;
+    font-family: $logo-font;
+    font-weight: 700;
+    padding: .5em;
+
+    &:focus,
+    &:hover {
+        background-color: $dark-purple;
+    }
+}
