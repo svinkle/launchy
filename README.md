@@ -16,6 +16,10 @@ For more details on the accessibility of modal windows:
 - WCAG 2.4.3: https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html#navigation-mechanisms-focus-order-examples-head
 - WAI-ARIA Authoring Practices 1.1: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
 
+## Demo
+
+Check out the [demo](https://svinkle.github.io/launchy/)! 👈
+
 ## Usage
 
 _Launchy_ is very easy to install and use:
