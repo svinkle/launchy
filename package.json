@@ -1,0 +1,57 @@
+{
+  "name": "launchy",
+  "version": "0.6.0",
+  "description": "Launchy: An Accessible Modal Window",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently 'npm run webpack-watch' 'npm run sass' 'npm run autoprefixer' 'npm run server'",
+    "server": "browser-sync start reload --server './brochure' --files './brochure/index.html' './src/launchy.js' './brochure/css/launchy.css'",
+    "sass": "node-sass --watch ./brochure/css/sass/styles.scss ./brochure/css/launchy.css",
+    "autoprefixer": "postcss ./brochure/css/launchy.css --use autoprefixer -o ./brochure/css/launchy.css",
+    "webpack-watch": "webpack -d --watch",
+    "build": "webpack -p",
+    "copy-to-brochure": "cp ./dist/launchy.js ./brochure/js/launchy.js",
+    "reload": "browser-sync reload",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svinkle/launchy.git"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "modal",
+    "dialog",
+    "html",
+    "javascript"
+  ],
+  "author": "Scott Vinkle <svinkle@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svinkle/launchy/issues"
+  },
+  "homepage": "https://github.com/svinkle/launchy#readme",
+  "dependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-runtime": "^6.25.0",
+    "browser-sync": "^2.18.13",
+    "concurrently": "^3.5.0",
+    "focusable": "^2.0.0",
+    "headless-chromium": "0.0.1-prerelease.1",
+    "jasmine": "^2.7.0",
+    "jasmine-core": "^2.7.0",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-webpack": "^2.0.4",
+    "node-sass": "^4.5.3",
+    "postcss-cli": "^4.1.0",
+    "webpack": "^3.4.1",
+    "webpack-shell-plugin": "^0.5.0"
+  }
+}

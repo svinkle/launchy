@@ -1,0 +1,10 @@
+rules:
+  class-name-format:
+    - 1
+    - convention: hyphenatedbem
+  indentation:
+    - 1
+    - size: 4
+  no-color-keywords: 0
+  no-duplicate-properties: 0
+  no-important: 0
