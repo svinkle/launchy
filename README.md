@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/svinkle/launchy.svg?branch=master)](https://travis-ci.org/svinkle/launchy)
+
 # Launchy 🚀
 
 > An accessible modal window!
