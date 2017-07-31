@@ -8,7 +8,7 @@
     }
 }
 
-.modal__window {
+.launchy__window {
     background-color: $off-white;
     border: transparent solid 1px;
     border-radius: 3px;
@@ -28,11 +28,11 @@
     }
 }
 
-.modal__content {
+.launchy__content {
     position: relative;
 }
 
-.modal__overlay {
+.launchy__overlay {
     background-color: $black;
     background-color: $overlay-bg;
     bottom: 0;
@@ -48,7 +48,7 @@
     }
 }
 
-.modal__close-link {
+.launchy__close-link {
     background-color: $purple;
     border-radius: 3px;
     color: $white;
@@ -67,13 +67,13 @@
     }
 }
 
-.modal__title {
+.launchy__title {
     font-family: $main-font;
     font-size: 2.5em;
     margin: 0;
 }
 
-.modal__launch-link {
+.launchy__launch-link {
     color: $white;
     display: inline-block;
     font-family: $main-font;
