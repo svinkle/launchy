@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/svinkle/launchy.svg?branch=master)](https://travis-ci.org/svinkle/launchy)
+
 # Launchy 🚀
 
 > An accessible modal window!
@@ -19,7 +21,7 @@ For more details on the accessibility of modal windows:
 ## Demo
 
 - Check out the [demo](https://svinkle.github.io/launchy/)! 👈
-- Quickly test your own HTML on [CodePen](https://codepen.io/svinkle/pen/pjVepz/)!
+- Try your own HTML with the [CodePen](https://codepen.io/svinkle/pen/pjVepz/) demo!
 
 ## Usage
 
