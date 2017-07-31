@@ -15,7 +15,7 @@
  * - WAI-ARIA Authoring Practices 1.1: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  *
  * @author Scott Vinkle <svinkle@gmail.com>
- * @version 0.6.3
+ * @version 0.6.4
  * @license MIT
  */
 

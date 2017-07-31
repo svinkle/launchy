@@ -65,7 +65,7 @@ npm i launchy-modal-window
 Include the `launchy.js` directly in your app or site template.
 
 ```html
-<script src="node_modules/launchy/launchy.js"></script>
+<script src="node_modules/launchy-modal-window/launchy.js"></script>
 ```
 
 ## Contributions
