@@ -10,16 +10,10 @@ module.exports = function(config) {
                 pattern: 'brochure/js/launchy.js',
                 watched: false,
                 served: true,
-                included: true,
+                included: false,
                 nocache: false
             }, {
-                pattern: 'brochure/css/launchy.css',
-                watched: false,
-                served: true,
-                included: true,
-                nocache: false
-            }, {
-                pattern: 'brochure/**/*.html',
+                pattern: 'brochure/index.html',
                 watched: false,
                 served: true,
                 included: true,
@@ -35,7 +29,7 @@ module.exports = function(config) {
         exclude: [],
         preprocessors: {
             'test/index.js': ['webpack'],
-            'brochure/**/*.html': ['html2js']
+            'brochure/index.html': ['html2js']
         },
         webpackMiddleware: {
             noInfo: true,

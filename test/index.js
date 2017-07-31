@@ -1,20 +1,27 @@
-// TODO: get this working…
-
 describe('Launchy', () => {
 
     beforeEach(() => {
-        fixture.setBase('base/brochure');
-        this.result = fixture.load('index.html');
+        fixture.base = 'brochure';
+        fixture.load('index.html');
     });
 
     afterEach(() => {
         fixture.cleanup();
     });
 
-    describe('launcher element', () => {
-        it('control to exist', (done) => {
-            expect(document.querySelector('[data-launchy]')).toBeTruthy();
+    describe('Elements…', () => {
+        it('with `data-launchy` to exist', (done) => {
+            expect(fixture.el.querySelector('[data-launchy]')).toBeTruthy();
             done();
         });
+
+        it('launcher control to exist', (done) => {
+            setTimeout(() => {
+                expect(fixture.el.querySelector('#launchy-control-0')).toBeTruthy();
+            }, 500);
+            done();
+        });
+
+        // TODO: write more dang tests!
     });
 });
