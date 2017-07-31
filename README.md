@@ -58,7 +58,7 @@ _Launchy_ is also available as an npm package!
 
 #### Install
 ```sh
-npm i launchy
+npm i launchy-modal-window
 ```
 
 #### Usage

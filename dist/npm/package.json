@@ -1,6 +1,6 @@
 {
-  "name": "launchy",
-  "version": "0.6.2",
+  "name": "launchy-modal-window",
+  "version": "0.6.3",
   "description": "Launchy: An Accessible Modal Window",
   "main": "index.js",
   "scripts": {
