@@ -1,5 +1,5 @@
 /**
- * Launchy: An Accessible Modal Window
+ * Launchy!: An Accessible Modal Window
  *
  * Features include:
  * - On launch, shift focus to the modal window container
@@ -15,7 +15,7 @@
  * - WAI-ARIA Authoring Practices 1.1: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  *
  * @author Scott Vinkle <svinkle@gmail.com>
- * @version 0.6.6
+ * @version 0.6.7
  * @license MIT
  */
 

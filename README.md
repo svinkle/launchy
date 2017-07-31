@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/svinkle/launchy.svg?branch=master)](https://travis-ci.org/svinkle/launchy)
 
-# Launchy 🚀
+# Launchy! 🚀
 
 > An accessible modal window!
 
@@ -25,10 +25,10 @@ For more details on the accessibility of modal windows:
 
 ## Usage
 
-_Launchy_ is very easy to install and use:
+_Launchy!_ is very easy to install and use:
 
 ### HTML
-Wherever you want to have a _Launchy_ control + window appear in your HTML content, simply **wrap** your content with a `<div>` and add the `data-launchy` attribute.
+Wherever you want to have a _Launchy!_ control + window appear in your HTML content, simply **wrap** your content with a `<div>` and add the `data-launchy` attribute.
 
 Example:
 
@@ -44,7 +44,7 @@ Example:
 
 ### CSS
 
-_Launchy_ has many CSS classes available on its generated elements for custom styles. Check out the [style.scss](https://github.com/svinkle/launchy/blob/9ddef002dcbd557e94309bf1cc99abe01432b8bc/brochure/css/sass/styles.scss) file for class names and an example on how you might want to style your modal windows!
+_Launchy!_ has many CSS classes available on its generated elements for custom styles. Check out the [style.scss](https://github.com/svinkle/launchy/blob/master/brochure/css/sass/styles.scss) file for class names and an example on how you might want to style your modal windows!
 
 ### JavaScript
 For any site, grab the `/dist/launchy.js` file and include it at the bottom of your HTML page/template:
@@ -53,10 +53,10 @@ For any site, grab the `/dist/launchy.js` file and include it at the bottom of y
 <script src="js/launchy.js"></script>
 ```
 
-_Launchy_ will run automatically and generate all the modal windows for you!
+_Launchy!_ will run automatically and generate all the modal windows for you!
 
 ### `npm` Package
-_Launchy_ is also available as an npm package!
+_Launchy!_ is also available as an npm package!
 
 #### Install
 ```sh
@@ -71,7 +71,7 @@ Include the `launchy.js` directly in your app or site template.
 ```
 
 ## Contributions
-See the [CONTRIBUTING](https://github.com/svinkle/launchy/blob/9ddef002dcbd557e94309bf1cc99abe01432b8bc/CONTRIBUTING.md) file.
+See the [CONTRIBUTING](https://github.com/svinkle/launchy/blob/master/CONTRIBUTING.md) file.
 
 ## License
-See the [LICENSE](https://github.com/svinkle/launchy/blob/9ddef002dcbd557e94309bf1cc99abe01432b8bc/LICENSE.md) file.
+See the [LICENSE](https://github.com/svinkle/launchy/blob/master/LICENSE.md) file.
