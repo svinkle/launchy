@@ -42,7 +42,7 @@ Example:
 
 ### CSS
 
-_Launchy_ has many CSS classes available on its generated elements for custom styles. Check out the [style.scss](https://github.com/svinkle/launchy/brochure/css/sass/style.scss) file for class names and an example on how you might want to style your modal windows!
+_Launchy_ has many CSS classes available on its generated elements for custom styles. Check out the [style.scss](https://github.com/svinkle/launchy/blob/9ddef002dcbd557e94309bf1cc99abe01432b8bc/brochure/css/sass/styles.scss) file for class names and an example on how you might want to style your modal windows!
 
 ### JavaScript
 For any site, grab the `/dist/launchy.js` file and include it at the bottom of your HTML page/template:
@@ -69,7 +69,7 @@ Include the `launchy.js` directly in your app or site template.
 ```
 
 ## Contributions
-See the [CONTRIBUTING](https://github.com/svinkle/launchy/CONTRIBUTING.md) file.
+See the [CONTRIBUTING](https://github.com/svinkle/launchy/blob/9ddef002dcbd557e94309bf1cc99abe01432b8bc/CONTRIBUTING.md) file.
 
 ## License
-See the [LICENSE](https://github.com/svinkle/launchy/LICENSE.md) file.
+See the [LICENSE](https://github.com/svinkle/launchy/blob/9ddef002dcbd557e94309bf1cc99abe01432b8bc/LICENSE.md) file.
