@@ -15,7 +15,7 @@
  * - WAI-ARIA Authoring Practices 1.1: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  *
  * @author Scott Vinkle <svinkle@gmail.com>
- * @version 0.6.5
+ * @version 0.6.6
  * @license MIT
  */
 
@@ -31,14 +31,14 @@ const htmlElements = {
 
 // CSS classes
 const classes = {
-    modalLaunchLink: 'modal__launch-link',
-    modalCloseLink: 'modal__close-link',
-    modalWindow: 'modal__window',
-    modalContent: 'modal__content',
-    modalOverlay: 'modal__overlay',
-    modalTitle: 'modal__title',
-    modalWindowIsVisible: 'modal__window--is-visible',
-    modalOverlayIsVisible: 'modal__overlay--is-visible'
+    modalLaunchLink: 'launchy__launch-link',
+    modalCloseLink: 'launchy__close-link',
+    modalWindow: 'launchy__window',
+    modalContent: 'launchy__content',
+    modalOverlay: 'launchy__overlay',
+    modalTitle: 'launchy__title',
+    modalWindowIsVisible: 'launchy__window--is-visible',
+    modalOverlayIsVisible: 'launchy__overlay--is-visible'
 };
 
 // Data attributes
