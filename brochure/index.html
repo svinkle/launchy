@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen|Lobster">
         <link rel="stylesheet" href="css/launchy.css">
+        <script>
+            const htmlElem = document.documentElement;
+
+            htmlElem.classList.add('js');
+            htmlElem.classList.remove('no-js');
+        </script>
     </head>
     <body>
 

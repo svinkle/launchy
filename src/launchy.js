@@ -15,7 +15,7 @@
  * - WAI-ARIA Authoring Practices 1.1: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  *
  * @author Scott Vinkle <svinkle@gmail.com>
- * @version 0.6.0
+ * @version 0.6.2
  * @license MIT
  */
 
@@ -45,6 +45,11 @@ const classes = {
 const data = {
     launchyText: 'data-launchy-text',
     launchyTitle: 'data-launchy-title'
+};
+
+// Keys
+const keysCodes = {
+    'Escape': 27
 };
 
 // Selectors
@@ -285,9 +290,7 @@ class Launchy {
 
             // If the user is moving forward, focus on the first element,
             // otherwise, the `shift` key is pressed; focus on the last element
-            this.shiftKeyIsPressed
-                ? this.lastFocusable.focus()
-                : this.firstFocusable.focus();
+            this.shiftKeyIsPressed ? this.lastFocusable.focus() : this.firstFocusable.focus();
         }
     };
 
@@ -305,45 +308,54 @@ class Launchy {
             this.shiftKeyIsPressed = e.shiftKey;
 
             // Hide the modal window on `esc` key press
-            if (e.keyCode === 27) {
+            if (e.keyCode === keysCodes.Escape) {
                 this.hideModal(e);
             }
         }
     };
 }
 
-// Create instances per `data-launchy` elements found in the DOM
-const launchyElements = document.querySelectorAll(selectors.launchyElements);
+const init = () => {
 
-for (const launchyElement of Array.from(launchyElements)) {
-    const launchyText = launchyElement.getAttribute(data.launchyText),
+    // Create instances per `data-launchy` elements found in the DOM
+    const launchyElements = document.querySelectorAll(selectors.launchyElements);
+
+    let launchyText = null,
+        launchyTitle = null;
+
+    for (const launchyElement of Array.from(launchyElements)) {
+        launchyText = launchyElement.getAttribute(data.launchyText),
         launchyTitle = launchyElement.getAttribute(data.launchyTitle);
 
-    // Throw an error if there's no launcher control text attribute
-    if (!launchyText) {
-        throw Error(strings.modalError);
-        break;
+        // Throw an error if there's no launcher control text attribute
+        if (!launchyText) {
+            throw Error(strings.modalError);
+            break;
+        }
+
+        // Throw an error if the launcher control text is empty
+        if (launchyText.trim() === '') {
+            throw Error(strings.modalErrorEmpty);
+            break;
+        }
+
+        // Throw a warning if there's no heading title text
+        if (!launchyTitle) {
+            console.warn(strings.modalWarning);
+        }
+
+        // Params object to send to Launchy constructor
+        const params = {
+            target: launchyElement,
+            text: launchyText,
+            title: launchyTitle
+        };
+
+        // Create a new instance for each found in the DOM
+        new Launchy(params);
     }
+};
 
-    // Throw an error if the launcher control text is empty
-    if (launchyText.trim() === '') {
-        throw Error(strings.modalErrorEmpty);
-        break;
-    }
-
-    // Throw a warning if there's no heading title text
-    if (!launchyTitle) {
-        console.warn(strings.modalWarning);
-    }
-
-    const params = {
-        target: launchyElement,
-        text: launchyText,
-        title: launchyTitle
-    };
-
-    // Create a new instance for each found in the DOM
-    new Launchy(params);
-}
+document.addEventListener('DOMContentLoaded', init, false);
 
 export {Launchy};

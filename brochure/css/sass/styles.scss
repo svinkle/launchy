@@ -2,8 +2,10 @@
 @import 'global';
 @import 'link-list';
 
-[data-launchy] {
-    display: none;
+.js {
+    [data-launchy] {
+        display: none;
+    }
 }
 
 .modal__window {

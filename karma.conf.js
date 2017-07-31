@@ -1,19 +1,31 @@
 module.exports = function(config) {
     config.set({
         basePath: '',
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'fixture'],
         plugins: [
-            'karma-jasmine', 'karma-chrome-launcher', 'karma-jasmine-html-reporter', 'karma-webpack'
+            'karma-jasmine', 'karma-chrome-launcher', 'karma-jasmine-html-reporter', 'karma-webpack', 'karma-fixture', 'karma-html2js-preprocessor'
         ],
         files: [
             {
-                pattern: './src/launchy.js',
-                watched: true,
+                pattern: 'brochure/js/launchy.js',
+                watched: false,
                 served: true,
                 included: true,
                 nocache: false
             }, {
-                pattern: './test/index.js',
+                pattern: 'brochure/css/launchy.css',
+                watched: false,
+                served: true,
+                included: true,
+                nocache: false
+            }, {
+                pattern: 'brochure/**/*.html',
+                watched: false,
+                served: true,
+                included: true,
+                nocache: false
+            }, {
+                pattern: 'test/index.js',
                 watched: true,
                 served: true,
                 included: true,
@@ -22,7 +34,8 @@ module.exports = function(config) {
         ],
         exclude: [],
         preprocessors: {
-            './test/index.js': ['webpack']
+            'test/index.js': ['webpack'],
+            'brochure/**/*.html': ['html2js']
         },
         webpackMiddleware: {
             noInfo: true,
