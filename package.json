@@ -13,7 +13,7 @@
     "copy-to-brochure": "cp ./dist/launchy.js ./brochure/js/launchy.js",
     "copy-to-npm": "cp ./dist/launchy.js ./dist/npm && cp ./.gitignore ./dist/npm && cp ./LICENSE.md ./dist/npm && cp ./package.json ./dist/npm  && cp ./README.md ./dist/npm",
     "reload": "browser-sync reload",
-    "precommit": "npm test && bump --version && bump --prompt --grep ./src/launchy.js && npm run build && git add .",
+    "precommit": "npm test && bump --version && bump --prompt --tag --grep ./src/launchy.js && sleep 10s && npm run build && git add .",
     "test": "karma start"
   },
   "repository": {

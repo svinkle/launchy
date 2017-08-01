@@ -10,9 +10,7 @@
  * - Set keyboard focus back to the launcher element on window close
  * - Transparent border for Windows High Contrast themes
  *
- * For more details:
- * - WCAG 2.4.3: https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html#navigation-mechanisms-focus-order-examples-head
- * - WAI-ARIA Authoring Practices 1.1: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
+ * Check out the GitHub repo for more information: https://github.com/svinkle/launchy
  *
  * @author Scott Vinkle <svinkle@gmail.com>
  * @version 0.6.7
