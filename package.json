@@ -1,6 +1,6 @@
 {
   "name": "launchy-modal-window",
-  "version": "0.6.9",
+  "version": "0.6.10",
   "description": "Launchy!: An Accessible Modal Window",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,6 @@
     "reload": "browser-sync reload",
     "release": "bump --version && bump --prompt --tag --grep ./src/launchy.js && cp ./package.json ./dist/npm && cd ./dist/npm && npm publish",
     "precommit": "npm test && npm run build && git add .",
-    "postreceive": "git subtree push --prefix brochure origin gh-pages",
     "test": "karma start"
   },
   "repository": {
