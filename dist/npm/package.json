@@ -1,6 +1,6 @@
 {
   "name": "launchy-modal-window",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Launchy!: An Accessible Modal Window",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "copy-to-brochure": "cp ./dist/launchy.js ./brochure/js/launchy.js",
     "copy-to-npm": "cp ./dist/launchy.js ./dist/npm && cp ./.gitignore ./dist/npm && cp ./LICENSE.md ./dist/npm && cp ./package.json ./dist/npm  && cp ./README.md ./dist/npm",
     "reload": "browser-sync reload",
-    "precommit": "bump --version && bump --prompt --tag --grep ./src/launchy.js ",
+    "bump": "bump --version && bump --prompt --tag --grep ./src/launchy.js ",
     "precommit": "npm test && npm run build && git add .",
     "test": "karma start"
   },
