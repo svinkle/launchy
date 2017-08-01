@@ -13,7 +13,7 @@
     "copy-to-brochure": "cp ./dist/launchy.js ./brochure/js/launchy.js",
     "copy-to-npm": "cp ./dist/launchy.js ./dist/npm && cp ./.gitignore ./dist/npm && cp ./LICENSE.md ./dist/npm && cp ./package.json ./dist/npm  && cp ./README.md ./dist/npm",
     "reload": "browser-sync reload",
-    "precommit": "npm test && npm run build && git add .",
+    "precommit": "npm test && bump --version && bump --prompt --grep ./src/launchy.js && npm run build && git add .",
     "test": "karma start"
   },
   "repository": {
@@ -56,6 +56,7 @@
     "karma-webpack": "^2.0.4",
     "node-sass": "^4.5.3",
     "postcss-cli": "^4.1.0",
+    "version-bump-prompt": "^3.1.2",
     "webpack": "^3.4.1",
     "webpack-shell-plugin": "^0.5.0"
   }
