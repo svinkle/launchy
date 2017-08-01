@@ -13,6 +13,7 @@
     "copy-to-brochure": "cp ./dist/launchy.js ./brochure/js/launchy.js",
     "copy-to-npm": "cp ./dist/launchy.js ./dist/npm && cp ./.gitignore ./dist/npm && cp ./LICENSE.md ./dist/npm && cp ./package.json ./dist/npm  && cp ./README.md ./dist/npm",
     "reload": "browser-sync reload",
+    "precommit": "npm test && npm run build && git add .",
     "test": "karma start"
   },
   "repository": {
@@ -43,6 +44,7 @@
     "concurrently": "^3.5.0",
     "focusable": "^2.0.0",
     "headless-chromium": "0.0.1-prerelease.1",
+    "husky": "^0.14.3",
     "jasmine": "^2.7.0",
     "jasmine-core": "^2.7.0",
     "karma": "^1.7.0",
