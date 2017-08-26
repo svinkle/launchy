@@ -35,7 +35,7 @@
     "url": "https://github.com/svinkle/launchy/issues"
   },
   "homepage": "https://github.com/svinkle/launchy#readme",
-  "dependencies": {
+  "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
