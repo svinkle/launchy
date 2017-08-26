@@ -14,9 +14,12 @@
     border-radius: 3px;
     box-shadow: 1px 1px 10px $black;
     display: none;
+    left: 50%;
     max-width: 30em;
     padding: 2em;
     position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 9999;
 
     &--is-visible {
