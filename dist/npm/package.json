@@ -1,7 +1,7 @@
 {
   "name": "launchy-modal-window",
   "version": "0.7.0",
-  "description": "Launchy!: An Accessible Modal Window",
+  "description": "Launchy! – An Accessible Modal Window",
   "main": "index.js",
   "scripts": {
     "start": "concurrently 'npm run webpack-watch' 'npm run sass' 'npm run server'",

@@ -1,5 +1,5 @@
 /**
- * Launchy!: An Accessible Modal Window
+ * Launchy! 🚀 — An Accessible Modal Window
  *
  * Features include:
  * - On launch, shift focus to the modal window container
@@ -133,7 +133,7 @@ class Launchy {
                 addAttributes = true;
             }
 
-            // Only add this elmenet to the set if conditions above are met
+            // Only add this element to the set if the above conditions are met
             if (addAttributes) {
                 domElement.setAttribute(data.launchyFocusable, true);
             }
