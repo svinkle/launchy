@@ -14,7 +14,7 @@
     "copy-to-npm": "cp ./dist/launchy.js ./dist/npm && cp ./.gitignore ./dist/npm && cp ./LICENSE.md ./dist/npm && cp ./package.json ./dist/npm  && cp ./README.md ./dist/npm",
     "reload": "browser-sync reload",
     "release": "bump --version && bump --prompt --tag --grep ./src/launchy.js && cp ./package.json ./dist/npm && cd ./dist/npm && npm publish",
-    "precommit": "npm test && npm run build && git add .",
+    "precommit": "npm test && npm run build",
     "test": "karma start"
   },
   "repository": {
