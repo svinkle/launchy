@@ -12,15 +12,25 @@
     background-color: $off-white;
     border: transparent solid 1px;
     border-radius: 3px;
+    bottom: 1rem;
     box-shadow: 1px 1px 10px $black;
     display: none;
-    left: 50%;
-    max-width: 30em;
-    padding: 2em;
+    left: 1rem;
+    padding: 1rem;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    right: 1rem;
+    top: 1rem;
     z-index: 9999;
+
+    @media (min-width: $break-point) {
+        bottom: auto;
+        left: 50%;
+        max-width: 30rem;
+        padding: 2rem;
+        right: auto;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 
     &--is-visible {
         display: block;
@@ -56,12 +66,17 @@
     border-radius: 3px;
     color: $white;
     display: inline-block;
-    font-size: 1.25em;
-    padding: .15em .5em;
+    font-size: 1.25rem;
+    padding: .15rem .5rem;
     position: absolute;
-    right: -1em;
+    right: 0;
     text-decoration: none;
-    top: -1em;
+    top: 0;
+
+    @media (min-width: $break-point) {
+        right: -1rem;
+        top: -1rem;
+    }
 
     &:focus,
     &:hover {
@@ -72,7 +87,7 @@
 
 .launchy__title {
     font-family: $main-font;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     margin: 0;
 }
 
@@ -80,7 +95,7 @@
     color: $white;
     display: inline-block;
     font-family: $main-font;
-    font-size: 3.5em;
+    font-size: 3.5rem;
     font-weight: 700;
     text-decoration: none;
     text-shadow: 1px 1px 2px $black;
