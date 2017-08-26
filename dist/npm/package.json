@@ -4,12 +4,12 @@
   "description": "Launchy!: An Accessible Modal Window",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently 'npm run webpack-watch' 'npm run sass' 'npm run autoprefixer' 'npm run server'",
-    "server": "browser-sync start reload --server './brochure' --files './brochure/index.html' './src/launchy.js' './brochure/css/launchy.css'",
-    "sass": "node-sass --watch ./brochure/css/sass/styles.scss ./brochure/css/launchy.css",
+    "start": "concurrently 'npm run webpack-watch' 'npm run sass' 'npm run server'",
+    "server": "browser-sync start reload --reloadDelay 2000 --server './brochure' --files './brochure/index.html' './src/launchy.js' './brochure/css/launchy.css'",
+    "sass": "node-sass --output-style compressed --watch ./brochure/css/sass/styles.scss ./brochure/css/launchy.css",
     "autoprefixer": "postcss ./brochure/css/launchy.css --use autoprefixer -o ./brochure/css/launchy.css",
     "webpack-watch": "webpack -d --watch",
-    "build": "webpack -p && npm run copy-to-npm",
+    "build": "webpack -p && npm run autoprefixer && npm run copy-to-npm",
     "copy-to-brochure": "cp ./dist/launchy.js ./brochure/js/launchy.js",
     "copy-to-npm": "cp ./dist/launchy.js ./dist/npm && cp ./.gitignore ./dist/npm && cp ./LICENSE.md ./dist/npm && cp ./package.json ./dist/npm  && cp ./README.md ./dist/npm",
     "reload": "browser-sync reload",
@@ -35,7 +35,7 @@
     "url": "https://github.com/svinkle/launchy/issues"
   },
   "homepage": "https://github.com/svinkle/launchy#readme",
-  "dependencies": {
+  "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",

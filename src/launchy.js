@@ -41,6 +41,9 @@ const classes = {
 
 // Data attributes
 const data = {
+    launchyAriaHidden: 'data-launchy-aria-hidden',
+    launchyFocusable: 'data-launchy-focusable',
+    launchyTabIndex: 'data-launchy-tabindex',
     launchyText: 'data-launchy-text',
     launchyTitle: 'data-launchy-title'
 };
@@ -63,6 +66,7 @@ const selectors = {
 // Strings
 const strings = {
     modalClose: 'Close modal window!',
+    modalCloseHTML: '<span aria-hidden="true">&times;</span>',
     modalError: 'Launchy container must have a `data-launchy-text` attribute!',
     modalErrorEmpty: 'Launchy container `data-launchy-text` attribute cannot be empty!',
     modalWarning: 'Launchy container should have a `data-launchy-title` attribute, or be sure to supply your own heading! (Prefereably an `<h2>`.)'
@@ -88,8 +92,10 @@ class Launchy {
         this.allFocusable = null;
         this.firstFocusable = null;
         this.lastFocusable = null;
+        this.domFocusable = null;
 
         // Setup all the things
+        this.prepareFocusable();
         this.createElements(params);
         this.insertElements(params);
         this.setupEventListeners();
@@ -99,10 +105,45 @@ class Launchy {
     }
 
     /**
+     * Add a data attribute on all existing focusable elements. Used in
+     * `modalHide()` and `modalShow()` to make elements "inert" -- prevent
+     * screen readers from reaching these elements when using other means
+     * of navigation (arrow keys, for example.)
+     *
+     * @return {null}
+     */
+    prepareFocusable() {
+
+        // Select all focusable elements in the DOM
+        this.domFocusable = document.querySelectorAll(this.focusable);
+
+        // For each focusable element in the DOM, set the data attribute
+        for (const domElement of Array.from(this.domFocusable)) {
+            let addAttributes = false;
+
+            // Check to see if the element already has `tabindex="-1"`
+            if (!domElement.hasAttribute('tabindex') || domElement.getAttribute('tabindex') !== '-1') {
+                domElement.setAttribute(data.launchyTabIndex, true);
+                addAttributes = true;
+            }
+
+            // Check to see if the element already has `aria-hidden="true"`
+            if (!domElement.hasAttribute('aria-hidden') || domElement.getAttribute('aria-hidden') !== 'true') {
+                domElement.setAttribute(data.launchyAriaHidden, true);
+                addAttributes = true;
+            }
+
+            // Only add this elmenet to the set if conditions above are met
+            if (addAttributes) {
+                domElement.setAttribute(data.launchyFocusable, true);
+            }
+        }
+    }
+
+    /**
      * Create all the required elements for Launchy to function.
      *
-     * @function createElements
-     * @param params {Object} instance parameters.
+     * @param {Object} params Instance parameters
      * @return {null}
      */
     createElements(params) {
@@ -121,7 +162,7 @@ class Launchy {
         this.closeControl.href = `#${selectors.launchyControl}${this.launchyId}`;
         this.closeControl.classList.add(classes.modalCloseLink);
         this.closeControl.setAttribute('aria-label', strings.modalClose);
-        this.closeControl.innerHTML = '<span aria-hidden="true">&times;</span>';
+        this.closeControl.innerHTML = strings.modalCloseHTML;
 
         // Modal window
         this.modalWindow = document.createElement(htmlElements.modalWindow);
@@ -157,11 +198,13 @@ class Launchy {
     /**
      * Insert Launchy elements into the DOM.
      *
-     * @function insertElements
-     * @param params {Object} instance parameters.
+     * @param {Object} params instance parameters
      * @return {null}
      */
     insertElements(params) {
+
+        // Select all focusable elements in the modal content
+        const domFocusable = params.target.querySelectorAll(this.focusable);
 
         // Launch control
         params.target.parentNode.insertBefore(this.launchControl, params.target);
@@ -183,6 +226,14 @@ class Launchy {
         // Move the content within the modal container
         this.modalContent.appendChild(params.target);
 
+        // Remove `data-launchy-focusable` from any elements within the
+        // modal content -- we don't want to make these inert
+        for (const domElement of Array.from(domFocusable)) {
+            domElement.removeAttribute(data.launchyAriaHidden);
+            domElement.removeAttribute(data.launchyFocusable);
+            domElement.removeAttribute(data.launchyTabIndex);
+        }
+
         // Overlay
         document.body.appendChild(this.modalOverlay);
     }
@@ -190,7 +241,6 @@ class Launchy {
     /**
      * Create event listeners for Launchy functionality.
      *
-     * @function setupEventListeners
      * @return {null}
      */
     setupEventListeners() {
@@ -216,8 +266,7 @@ class Launchy {
     /**
      * Show the modal window.
      *
-     * @function showModal
-     * @param e {Object} The event object.
+     * @param {Object} e The event object
      * @return {null}
      */
     showModal(e) {
@@ -239,6 +288,9 @@ class Launchy {
         this.modalOverlay.classList.add(classes.modalOverlayIsVisible);
         this.modalWindow.setAttribute('aria-hidden', false);
 
+        // Set focusable elements as "inert"
+        this.inertElements(true);
+
         // Shift keyboard focus to the modal window container
         this.modalWindow.focus();
     };
@@ -246,8 +298,7 @@ class Launchy {
     /**
      * Hide the modal window.
      *
-     * @function hideModal
-     * @param e {Object} The event object.
+     * @param {Object} e The event object
      * @return {null}
      */
     hideModal(e) {
@@ -266,6 +317,9 @@ class Launchy {
         this.modalOverlay.classList.remove(classes.modalOverlayIsVisible);
         this.modalWindow.setAttribute('aria-hidden', true);
 
+        // Remove "inert" state for focusable elements
+        this.inertElements(false);
+
         // Set focus to the previous active element
         this.activeElement.focus();
     };
@@ -273,8 +327,7 @@ class Launchy {
     /**
      * Trap keyboard focus within the modal window.
      *
-     * @function trapFocus
-     * @param e {Object} The event object.
+     * @param {Object} e The event object
      * @return {null}
      */
     trapFocus(e) {
@@ -296,8 +349,7 @@ class Launchy {
     /**
      * Check if the `esc` key has been pressed.
      *
-     * @function checkEsc
-     * @param e {Object} The event object.
+     * @param {Object} e The event object
      * @return {null}
      */
     checkEsc(e) {
@@ -309,6 +361,42 @@ class Launchy {
             // Hide the modal window on `esc` key press
             if (e.keyCode === keysCodes.Escape) {
                 this.hideModal(e);
+            }
+        }
+    };
+
+    /**
+     * Set all existing focusable elements as "inert" -- hide from screen
+     * readers in order to keep focus trapped within modal when using other
+     * forms of keyboard navigation (other than tab).
+     *
+     * @param {Boolean} inert Flag to set elements "inert" state
+     * @return {null}
+     */
+    inertElements(inert) {
+
+        // Select all `data-launchy-focusable` elements
+        const domFocusable = document.querySelectorAll(`[${data.launchyFocusable}]`);
+
+        for (const domElement of Array.from(domFocusable)) {
+            if (inert) {
+
+                // If the element has the launchy aria-hidden data attribute,
+                // hide from screen readers
+                if (domElement.hasAttribute(data.launchyAriaHidden)) {
+                    domElement.setAttribute('aria-hidden', true);
+                }
+
+                // If the element has the launchy tabindex data attribute,
+                // remove element from tab order
+                if (domElement.hasAttribute(data.launchyTabIndex)) {
+                    domElement.setAttribute('tabindex', -1);
+                }
+            } else {
+
+                // Remove the attributes to reset as focusable
+                domElement.removeAttribute('aria-hidden');
+                domElement.removeAttribute('tabindex');
             }
         }
     };
