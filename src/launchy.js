@@ -394,9 +394,14 @@ class Launchy {
                 }
             } else {
 
-                // Remove the attributes to reset as focusable
-                domElement.removeAttribute('aria-hidden');
-                domElement.removeAttribute('tabindex');
+                // Ditto 👆, except remove the attributes to reset as focusable
+                if (domElement.hasAttribute(data.launchyAriaHidden)) {
+                    domElement.removeAttribute('aria-hidden', true);
+                }
+
+                if (domElement.hasAttribute(data.launchyTabIndex)) {
+                    domElement.removeAttribute('tabindex', -1);
+                }
             }
         }
     };
