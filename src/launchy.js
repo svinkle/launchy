@@ -128,7 +128,7 @@ class Launchy {
         this.modalWindow.classList.add(classes.modalWindow);
         this.modalWindow.setAttribute('tabindex', -1);
         this.modalWindow.setAttribute('role', 'dialog');
-        this.modalWindow.setAttribute('aria-hidden', true);
+        this.modalWindow.setAttribute('aria-modal', true);
 
         if (this.hasTitle) {
             this.modalWindow.setAttribute('aria-labelledby', `${selectors.modalTitle}${this.launchyId}`);
