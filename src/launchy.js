@@ -112,6 +112,7 @@ class Launchy {
         this.launchControl.id = `${selectors.launchyControl}${this.launchyId}`;
         this.launchControl.href = `#${selectors.launchyDialog}${this.launchyId}`;
         this.launchControl.classList.add(classes.modalLaunchLink);
+        this.launchControl.setAttribute('aria-haspopup', 'dialog');
         this.launchControl.textContent = params.text;
 
         // Close control
