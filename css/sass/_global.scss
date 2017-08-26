@@ -27,7 +27,7 @@ hr {
     border: solid transparent 1px;
     border-top: solid $light-gray 1px;
     height: 0;
-    margin: 1.5em 0;
+    margin: 1.5rem 0;
     width: 100%;
 }
 
@@ -38,7 +38,7 @@ button {
     color: $white;
     font-family: $logo-font;
     font-weight: 700;
-    padding: .5em;
+    padding: .5rem;
 
     &:focus,
     &:hover {
