@@ -74,7 +74,7 @@ const strings = {
     modalError: 'Launchy container must have a `data-launchy-text` attribute!',
     modalErrorEmpty: 'Launchy container `data-launchy-text` attribute cannot be empty!',
     modalWarning: 'Launchy container should have a `data-launchy-title` attribute, or be sure to supply your own heading! (Prefereably an `<h2>`.)',
-    refocusElemNotFound: 'Element to send focus to on hide not found!'
+    refocusElemNotFound: 'Refocus element not found!'
 };
 
 // Unique identifier
@@ -85,8 +85,6 @@ class Launchy {
 
         // https://www.npmjs.com/package/focusable
         this.focusable = require('focusable');
-
-        // this.launchyCloseElements = document.querySelector('[data-launchy-close]');
 
         // Unique identifier for each instance
         this.launchyId = launchyId;
@@ -396,9 +394,9 @@ class Launchy {
         const refocusId = e.target.getAttribute(data.launchyCustom.refocus);
         const refocusElem = document.querySelector(`#${refocusId}`);
 
-        // Throw an error if the element to focus is not found
+        // Throw an error if the refocus element is not found
         if (refocusElem == null) {
-            throw Error(`${strings.refocusElemNotFound} -- #${refocusId}`);
+            throw Error(`${strings.refocusElemNotFound}: #${refocusId}`);
             return;
         }
 
