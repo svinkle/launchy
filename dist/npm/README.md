@@ -12,6 +12,8 @@
 - Closes the window on `esc` key press
 - Closes the window on overlay mouse `click`
 - Sets keyboard focus back to the launcher element on window close
+- Add your own custom close controls!
+- Add your own custom controls which send focus to somewhere else on the page!
 - Transparent border for Windows High Contrast themes
 
 For more details on the accessibility of modal windows:
@@ -41,6 +43,47 @@ Example:
 - **Required**: `data-launchy` -- Attribute is required but the value can be anything
 - **Required**: `data-launchy-text` -- This is the text that will be output to the launcher control
 - Optional: `data-launchy-title` -- The text which appears in the heading of the modal window, recommended for greater a11y context 👍
+
+
+#### Custom Close Controls
+
+You can add your own custom close controls to any _Launchy!_ modal window!
+
+1. Add the HTML element you wish to use for the control within your content
+2. Apply the `data-launchy-close` attribute
+
+Example:
+
+```html
+<div data-launchy data-launchy-text="Launch window!" data-launchy-title="My modal window">
+    <p>This content will appear in the modal window.</p>
+    <a href="#" data-launchy-close="🔥">Ok!</a>
+</div>
+```
+
+Clicking on the _"Ok!"_ link will hide the modal window and send focus back to the launcher control!
+
+#### Custom Refocus Controls
+
+You can add your own custom "refocus" controls to any _Launchy!_ modal window!
+
+1. Add the HTML element you wish to use for the control within your content
+2. Apply the `data-launchy-refocus` attribute
+3. Set the value of the `data-launchy-refocus` attribute to the `id` of the element you wish to send focus to
+
+Example:
+
+```html
+<div data-launchy data-launchy-text="Launch window!" data-launchy-title="My modal window">
+    <p>This content will appear in the modal window.</p>
+    <a href="#" data-launchy-refocus="post-title">Send me to the article headline!</a>
+</div>
+
+<!-- Somewhere else in your page… -->
+<h1 id="post-title" tabindex="-1">My perfect sundae…</h1>
+```
+
+Clicking on the _"Send me to the article headline!"_ link will hide the modal window and shift keyboard focus to the `<h1 id="post-title"/>` element!
 
 ### CSS
 

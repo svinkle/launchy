@@ -45,7 +45,11 @@ const data = {
     launchyFocusable: 'data-launchy-focusable',
     launchyTabIndex: 'data-launchy-tabindex',
     launchyText: 'data-launchy-text',
-    launchyTitle: 'data-launchy-title'
+    launchyTitle: 'data-launchy-title',
+    launchyCustom: {
+        close: 'data-launchy-close',
+        refocus: 'data-launchy-refocus'
+    }
 };
 
 // Keys
@@ -69,7 +73,8 @@ const strings = {
     modalCloseHTML: '<span aria-hidden="true">&times;</span>',
     modalError: 'Launchy container must have a `data-launchy-text` attribute!',
     modalErrorEmpty: 'Launchy container `data-launchy-text` attribute cannot be empty!',
-    modalWarning: 'Launchy container should have a `data-launchy-title` attribute, or be sure to supply your own heading! (Prefereably an `<h2>`.)'
+    modalWarning: 'Launchy container should have a `data-launchy-title` attribute, or be sure to supply your own heading! (Prefereably an `<h2>`.)',
+    refocusElemNotFound: 'Element to send focus to on hide not found!'
 };
 
 // Unique identifier
@@ -80,6 +85,8 @@ class Launchy {
 
         // https://www.npmjs.com/package/focusable
         this.focusable = require('focusable');
+
+        // this.launchyCloseElements = document.querySelector('[data-launchy-close]');
 
         // Unique identifier for each instance
         this.launchyId = launchyId;
@@ -245,6 +252,10 @@ class Launchy {
      */
     setupEventListeners() {
 
+        // Gather any custom close or refocus controls
+        const closeControls = this.modalContent.querySelectorAll(`[${data.launchyCustom.close}]`);
+        const refocusControls = this.modalContent.querySelectorAll(`[${data.launchyCustom.refocus}]`);
+
         // Show the modal window on the launcher element `click` event
         this.launchControl.addEventListener('click', this.showModal.bind(this), false);
 
@@ -261,6 +272,16 @@ class Launchy {
 
         // Check for `esc` key press on the document `keydown` event
         document.addEventListener('keydown', this.checkEsc.bind(this), false);
+
+        // Add event listener for all custom close controls
+        for (const closeControl of Array.from(closeControls)) {
+            closeControl.addEventListener('click', this.hideModal.bind(this), false);
+        }
+
+        // Add event listener for all custom refocus controls
+        for (const refocusControl of Array.from(refocusControls)) {
+            refocusControl.addEventListener('click', this.hideModalRefocus.bind(this), false);
+        }
     }
 
     /**
@@ -363,6 +384,29 @@ class Launchy {
                 this.hideModal(e);
             }
         }
+    };
+
+    /**
+     * Send focus to the specified element `id` on custom refocus element click
+     *
+     * @param {Object} e The event object
+     * @return {null}
+     */
+    hideModalRefocus(e) {
+        const refocusId = e.target.getAttribute(data.launchyCustom.refocus);
+        const refocusElem = document.querySelector(`#${refocusId}`);
+
+        // Throw an error if the element to focus is not found
+        if (refocusElem == null) {
+            throw Error(`${strings.refocusElemNotFound} -- #${refocusId}`);
+            return;
+        }
+
+        // Hide the modal
+        this.hideModal(e);
+
+        // Send focus to the specified element
+        refocusElem.focus();
     };
 
     /**

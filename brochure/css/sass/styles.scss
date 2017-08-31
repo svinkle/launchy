@@ -106,3 +106,18 @@
         text-decoration: underline;
     }
 }
+
+.launchy__custom-control {
+    background-color: $purple;
+    border-radius: 3px;
+    color: $white;
+    display: inline-block;
+    padding: .5rem;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+        background-color: $dark-purple;
+        color: $white;
+    }
+}
