@@ -2,7 +2,7 @@
 
 # Launchy! 🚀
 
-> An accessible modal window!
+> An accessible modal window! — https://launchy.io
 
 ## Features include:
 - Easy to use and implement!
@@ -22,7 +22,7 @@ For more details on the accessibility of modal windows:
 
 ## Demo
 
-- Check out the [demo](https://svinkle.github.io/launchy/)! 👈
+- Check out the [demo](https://launchy.io)! 👈
 - Try your own HTML with the [CodePen](https://codepen.io/svinkle/pen/pjVepz/) demo!
 
 ## Usage
