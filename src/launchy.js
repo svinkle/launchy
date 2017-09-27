@@ -271,6 +271,9 @@ class Launchy {
         // Check for `esc` key press on the document `keydown` event
         document.addEventListener('keydown', this.checkEsc.bind(this), false);
 
+        // Check for `shift` key press on the document `keydown` event
+        document.addEventListener('keydown', this.checkShift.bind(this), false);
+
         // Add event listener for all custom close controls
         for (const closeControl of Array.from(closeControls)) {
             closeControl.addEventListener('click', this.hideModal.bind(this), false);
@@ -374,13 +377,24 @@ class Launchy {
     checkEsc(e) {
         if (this.modalIsVisible) {
 
-            // Cache the `shift` key state
-            this.shiftKeyIsPressed = e.shiftKey;
-
             // Hide the modal window on `esc` key press
             if (e.keyCode === keysCodes.Escape) {
                 this.hideModal(e);
             }
+        }
+    };
+
+    /**
+     * Check if the `shift` key is being being pressed.
+     *
+     * @param {Object} e The event object
+     * @return {null}
+     */
+    checkShift(e) {
+        if (this.modalIsVisible) {
+
+            // Cache the `shift` key state
+            this.shiftKeyIsPressed = e.shiftKey;
         }
     };
 

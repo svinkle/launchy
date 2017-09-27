@@ -17,7 +17,7 @@
     display: none;
     left: 1rem;
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     right: 1rem;
     top: 1rem;
     z-index: 9999;
@@ -99,6 +99,10 @@
     font-weight: 700;
     text-decoration: none;
     text-shadow: 1px 1px 2px $black;
+
+    @media (min-width: $break-point) {
+        font-size: 6rem;
+    }
 
     &:focus,
     &:hover {
