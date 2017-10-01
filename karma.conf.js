@@ -37,7 +37,7 @@ module.exports = function(config) {
         exclude: [],
         preprocessors: {
             'test/index.js': ['webpack'],
-            'src/**/*.js': ['coverage'],
+            'brochure/js/launchy.js': ['coverage'],
             'brochure/index.html': ['html2js']
         },
         webpackMiddleware: {
