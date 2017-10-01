@@ -15,6 +15,7 @@
     "reload": "browser-sync reload",
     "release": "bump --version && bump --prompt --tag --grep ./src/launchy.js && cp ./package.json ./dist/npm && cd ./dist/npm && npm publish",
     "precommit": "npm test && npm run build",
+    "report-coverage": "codecov",
     "test": "karma start"
   },
   "repository": {
@@ -46,10 +47,12 @@
     "focusable": "^2.0.0",
     "headless-chromium": "0.0.1-prerelease.1",
     "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
     "jasmine": "^2.7.0",
     "jasmine-core": "^2.7.0",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
     "karma-fixture": "^0.2.6",
     "karma-html2js-preprocessor": "^1.1.0",
     "karma-jasmine": "^1.1.0",

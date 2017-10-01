@@ -1,16 +1,24 @@
 module.exports = function(config) {
     config.set({
         basePath: '',
-        frameworks: ['jasmine', 'fixture'],
+        frameworks: [
+            'jasmine', 'fixture'
+        ],
         plugins: [
-            'karma-jasmine', 'karma-chrome-launcher', 'karma-jasmine-html-reporter', 'karma-webpack', 'karma-fixture', 'karma-html2js-preprocessor'
+            'karma-coverage',
+            'karma-jasmine',
+            'karma-chrome-launcher',
+            'karma-jasmine-html-reporter',
+            'karma-webpack',
+            'karma-fixture',
+            'karma-html2js-preprocessor'
         ],
         files: [
             {
                 pattern: 'brochure/js/launchy.js',
                 watched: false,
                 served: true,
-                included: false,
+                included: true,
                 nocache: false
             }, {
                 pattern: 'brochure/index.html',
@@ -29,6 +37,7 @@ module.exports = function(config) {
         exclude: [],
         preprocessors: {
             'test/index.js': ['webpack'],
+            'brochure/js/launchy.js': ['coverage'],
             'brochure/index.html': ['html2js']
         },
         webpackMiddleware: {
@@ -36,7 +45,7 @@ module.exports = function(config) {
             stats: 'errors-only'
         },
         reporters: [
-            'progress', 'kjhtml'
+            'progress', 'kjhtml', 'coverage'
         ],
         port: 9876,
         colors: true,
@@ -46,6 +55,18 @@ module.exports = function(config) {
         browsers: ['ChromeHeadless'],
         singleRun: true,
         concurrency: Infinity,
+        coverageReporter: {
+            reporters: [
+                {
+                    type: 'lcovonly',
+                    subdir: '.'
+                },
+                {
+                    type: 'json',
+                    subdir: '.'
+                }
+            ]
+        },
         webpack: {
             module: {
                 loaders: [
