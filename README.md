@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/svinkle/launchy.svg?branch=master)](https://travis-ci.org/svinkle/launchy)
+[![codecov](https://codecov.io/gh/svinkle/launchy/branch/master/graph/badge.svg)](https://codecov.io/gh/svinkle/launchy)
 
 # Launchy! 🚀
 
