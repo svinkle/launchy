@@ -22,6 +22,35 @@ describe('Launchy', () => {
             done();
         });
 
+        it('with `data-launchy-text` to exist', (done) => {
+            expect(fixture.el.querySelector('[data-launchy-text]')).toBeTruthy();
+            done();
+        });
+
+        it('with `data-launchy-title` to exist', (done) => {
+            expect(fixture.el.querySelector('[data-launchy-title]')).toBeTruthy();
+            done();
+        });
+
+        it('launchy dialog to exist', (done) => {
+            setTimeout(() => {
+                expect(fixture.el.querySelector('#launchy-dialog-0')).toBeTruthy();
+            }, 500);
+            done();
+        });
+
+        it('launchy close control to exist', (done) => {
+            setTimeout(() => {
+                expect(fixture.el.querySelector('#launchy-close-control-0')).toBeTruthy();
+            }, 500);
+            done();
+        })
+
+        it('with `data-launchy-close` to exist', (done) => {
+            expect(fixture.el.querySelector('[data-launchy-close]')).toBeTruthy();
+            done();
+        });
+
         // TODO: write more dang tests!
     });
 });
