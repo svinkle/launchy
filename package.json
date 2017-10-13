@@ -16,7 +16,7 @@
     "release": "bump --version && bump --prompt --tag --grep ./src/launchy.js && cp ./package.json ./dist/npm && cd ./dist/npm && npm publish",
     "precommit": "npm test && npm run build",
     "report-coverage": "codecov",
-    "test": "karma start && npm run report-coverage"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",

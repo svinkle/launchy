@@ -12,4 +12,5 @@ before_install:
 
 # Run the tests
 script:
-  - npm test
+  - npm test -- --reporters progress,kjhtml,coverage
+  - npm run report-coverage

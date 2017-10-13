@@ -45,7 +45,7 @@ module.exports = function(config) {
             stats: 'errors-only'
         },
         reporters: [
-            'progress', 'kjhtml', 'coverage'
+            'progress', 'kjhtml'
         ],
         port: 9876,
         colors: true,
