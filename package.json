@@ -1,6 +1,6 @@
 {
   "name": "launchy-modal-window",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Launchy! – An Accessible Modal Window",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,6 @@
     "reload": "browser-sync reload",
     "release": "bump --version && bump --prompt --tag --grep ./src/launchy.js && cp ./package.json ./dist/npm && cd ./dist/npm && npm publish",
     "precommit": "npm test && npm run build",
-    "report-coverage": "codecov",
     "test": "karma start"
   },
   "repository": {
@@ -43,7 +42,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-runtime": "^6.25.0",
     "browser-sync": "^2.18.13",
-    "codecov": "^2.3.0",
+    "chai": "^4.1.2",
     "concurrently": "^3.5.0",
     "focusable": "^2.0.0",
     "headless-chromium": "0.0.1-prerelease.1",
@@ -51,14 +50,17 @@
     "istanbul": "^0.4.5",
     "jasmine": "^2.7.0",
     "jasmine-core": "^2.7.0",
-    "karma": "^1.7.0",
+    "karma": "^1.7.1",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.1",
     "karma-fixture": "^0.2.6",
     "karma-html2js-preprocessor": "^1.1.0",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-mocha": "^1.3.0",
     "karma-webpack": "^2.0.4",
+    "mocha": "^4.0.1",
     "node-sass": "^4.5.3",
     "postcss-cli": "^4.1.0",
     "version-bump-prompt": "^3.1.2",

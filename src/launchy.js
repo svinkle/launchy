@@ -13,10 +13,11 @@
  * Check out the GitHub repo for more information: https://github.com/svinkle/launchy
  *
  * @author Scott Vinkle <svinkle@gmail.com>
- * @version 0.8.0
+ * @version 0.8.1
  * @license MIT
  */
 
+// https://github.com/WICG/inert
 import 'wicg-inert';
 
 // HTML elements
@@ -26,6 +27,7 @@ const htmlElements = {
     modalWindow: 'div',
     modalContent: 'div',
     modalOverlay: 'div',
+    modalBumper: 'div',
     modalTitle: 'h2'
 };
 
@@ -43,9 +45,6 @@ const classes = {
 
 // Data attributes
 const data = {
-    launchyAriaHidden: 'data-launchy-aria-hidden',
-    launchyFocusable: 'data-launchy-focusable',
-    launchyTabIndex: 'data-launchy-tabindex',
     launchyText: 'data-launchy-text',
     launchyTitle: 'data-launchy-title',
     launchyCustom: {
@@ -66,6 +65,7 @@ const selectors = {
     launchyDialog: 'launchy-dialog-',
     launchyCloseControl: 'launchy-close-control-',
     modalOverlay: 'modal-overlay-',
+    modalBumper: 'modal-bumper-',
     modalTitle: 'modal-title-'
 };
 
@@ -102,49 +102,13 @@ class Launchy {
         this.domFocusable = null;
 
         // Setup all the things
-        this.prepareFocusable();
+        // this.prepareFocusable();
         this.createElements(params);
         this.insertElements(params);
         this.setupEventListeners();
 
         // Increment identifier
         launchyId++;
-    }
-
-    /**
-     * Add a data attribute on all existing focusable elements. Used in
-     * `modalHide()` and `modalShow()` to make elements "inert" -- prevent
-     * screen readers from reaching these elements when using other means
-     * of navigation (arrow keys, for example.)
-     *
-     * @return {null}
-     */
-    prepareFocusable() {
-
-        // Select all focusable elements in the DOM
-        this.domFocusable = document.querySelectorAll(this.focusable);
-
-        // For each focusable element in the DOM, set the data attribute
-        for (const domElement of Array.from(this.domFocusable)) {
-            let addAttributes = false;
-
-            // Check to see if the element already has `tabindex="-1"`
-            if (!domElement.hasAttribute('tabindex') || domElement.getAttribute('tabindex') !== '-1') {
-                domElement.setAttribute(data.launchyTabIndex, true);
-                addAttributes = true;
-            }
-
-            // Check to see if the element already has `aria-hidden="true"`
-            if (!domElement.hasAttribute('aria-hidden') || domElement.getAttribute('aria-hidden') !== 'true') {
-                domElement.setAttribute(data.launchyAriaHidden, true);
-                addAttributes = true;
-            }
-
-            // Only add this element to the set if the above conditions are met
-            if (addAttributes) {
-                domElement.setAttribute(data.launchyFocusable, true);
-            }
-        }
     }
 
     /**
@@ -189,6 +153,11 @@ class Launchy {
         this.modalOverlay.classList.add(classes.modalOverlay);
         this.modalOverlay.setAttribute('tabindex', 0);
 
+        // Modal bumper
+        this.modalBumper = document.createElement(htmlElements.modalBumper);
+        this.modalBumper.id = `${selectors.modalBumper}${this.launchyId}`;
+        this.modalBumper.setAttribute('tabindex', 0);
+
         // Modal content
         this.modalContent = document.createElement(htmlElements.modalContent);
         this.modalContent.classList.add(classes.modalContent);
@@ -210,9 +179,6 @@ class Launchy {
      */
     insertElements(params) {
 
-        // Select all focusable elements in the modal content
-        const domFocusable = params.target.querySelectorAll(this.focusable);
-
         // Launch control
         params.target.parentNode.insertBefore(this.launchControl, params.target);
 
@@ -233,16 +199,11 @@ class Launchy {
         // Move the content within the modal container
         this.modalContent.appendChild(params.target);
 
-        // Remove `data-launchy-focusable` from any elements within the
-        // modal content -- we don't want to make these inert
-        for (const domElement of Array.from(domFocusable)) {
-            domElement.removeAttribute(data.launchyAriaHidden);
-            domElement.removeAttribute(data.launchyFocusable);
-            domElement.removeAttribute(data.launchyTabIndex);
-        }
-
         // Overlay
         document.body.appendChild(this.modalOverlay);
+
+        // Bumper
+        document.body.insertBefore(this.modalBumper, document.body.firstChild);
     }
 
     /**
@@ -428,16 +389,21 @@ class Launchy {
      * readers in order to keep focus trapped within modal when using other
      * forms of keyboard navigation (other than tab).
      *
-     * @param {Boolean} inert Flag to set elements "inert" state
+     * @param {Boolean} isInert Flag to set elements "inert" state
      * @return {null}
      */
-    inertElements(inert) {
+    inertElements(isInert) {
 
-        // Select all `data-launchy-focusable` elements
-        const domFocusable = document.querySelectorAll(`[${data.launchyFocusable}]`);
+        // Select all focusable elements
+        const focusable = document.querySelectorAll(this.focusable);
 
-        for (const domElement of Array.from(domFocusable)) {
-            domElement.inert = inert;
+        for (const elem of Array.from(focusable)) {
+
+            // Do not apply `inert` to the overlay, bumper, or any elements
+            // within the modal itself
+            if (this.modalOverlay !== elem && this.modalBumper !== elem && !this.modalWindow.contains(elem)) {
+                elem.inert = isInert;
+            }
         }
     };
 }
