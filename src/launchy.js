@@ -17,6 +17,8 @@
  * @license MIT
  */
 
+import 'wicg-inert';
+
 // HTML elements
 const htmlElements = {
     launchModal: 'a',
@@ -435,30 +437,7 @@ class Launchy {
         const domFocusable = document.querySelectorAll(`[${data.launchyFocusable}]`);
 
         for (const domElement of Array.from(domFocusable)) {
-            if (inert) {
-
-                // If the element has the launchy aria-hidden data attribute,
-                // hide from screen readers
-                if (domElement.hasAttribute(data.launchyAriaHidden)) {
-                    domElement.setAttribute('aria-hidden', true);
-                }
-
-                // If the element has the launchy tabindex data attribute,
-                // remove element from tab order
-                if (domElement.hasAttribute(data.launchyTabIndex)) {
-                    domElement.setAttribute('tabindex', -1);
-                }
-            } else {
-
-                // Ditto 👆, except remove the attributes to reset as focusable
-                if (domElement.hasAttribute(data.launchyAriaHidden)) {
-                    domElement.removeAttribute('aria-hidden', true);
-                }
-
-                if (domElement.hasAttribute(data.launchyTabIndex)) {
-                    domElement.removeAttribute('tabindex', -1);
-                }
-            }
+            domElement.inert = inert;
         }
     };
 }
