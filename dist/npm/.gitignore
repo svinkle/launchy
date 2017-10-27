@@ -5,3 +5,4 @@ tmp
 *.css.map
 .DS_Store
 package-lock.json
+coverage

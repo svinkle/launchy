@@ -44,13 +44,11 @@ describe('Launchy', () => {
                 expect(fixture.el.querySelector('#launchy-close-control-0')).toBeTruthy();
             }, 500);
             done();
-        })
+        });
 
         it('with `data-launchy-close` to exist', (done) => {
             expect(fixture.el.querySelector('[data-launchy-close]')).toBeTruthy();
             done();
         });
-
-        // TODO: write more dang tests!
     });
 });
