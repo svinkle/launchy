@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Launchy! – Tests</title>
+        <link rel="stylesheet" media="all" href="../node_modules/mocha/mocha.css">
+        <style>
+            .visuallyhidden {
+                border: 0;
+                clip: rect(0 0 0 0);
+                -webkit-clip-path: inset(50%);
+                clip-path: inset(50%);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+                white-space: nowrap;
+            }
+        </style>
+        <script>
+            const htmlElem = document.documentElement;
+
+            htmlElem.classList.add('js');
+            htmlElem.classList.remove('no-js');
+        </script>
+    </head>
+    <body>
+
+        <div class="visuallyhidden">
+            <div data-launchy="🚀" data-launchy-text="Launchy! 🚀" data-launchy-title="Boom! 💥">
+                <p>This modal window is fully accessible!</p>
+                <p>Notice when you <code>Tab</code> or <code>Shift+Tab</code>, keyboard focus remains within the modal window. 💪</p>
+                <p>To close the window press <code>Esc</code>, click the close button, or the modal overlay. Up to you, really.</p>
+                <hr>
+                <ul>
+                    <li>Check the source code on <a href="https://github.com/svinkle/launchy">GitHub</a>.</li>
+                    <li>Try your own HTML with the <a href="https://codepen.io/svinkle/pen/pjVepz/">CodePen demo</a>!</li>
+                    <li>Made with 💖 by <a href="https://twitter.com/svinkle">@svinkle</a>.</li>
+                </ul>
+                <a href="#" class="launchy__custom-control" data-launchy-close="🔥">Ok! 👍</a>
+            </div>
+
+            <ul class="link-list">
+                <li class="link-list__item">
+                    <a href="https://github.com/svinkle/launchy" class="link-list__link">GitHub</a>
+                </li>
+                <li class="link-list__item">
+                    <a href="https://medium.com/@svinkle/introducing-launchy-41317521625e" class="link-list__link">Medium</a>
+                </li>
+                <li class="link-list__item">
+                    <a href="https://twitter.com/svinkle" class="link-list__link">Twitter</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="mocha"></div>
+        <div id="messages"></div>
+        <div id="fixtures"></div>
+        <script src="../node_modules/mocha/mocha.js"></script>
+        <script src="../node_modules/chai/chai.js"></script>
+        <script src="../node_modules/chai-truthy/index.js"></script>
+        <script src="../brochure/js/launchy.js"></script>
+        <script>mocha.setup('bdd')</script>
+        <script src="test.js"></script>
+        <script>mocha.run();</script>
+    </body>
+</html>
