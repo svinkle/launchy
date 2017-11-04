@@ -268,10 +268,9 @@ class Launchy {
         this.firstFocusable = this.allFocusable[0];
         this.lastFocusable = this.allFocusable[this.allFocusable.length - 1];
 
-        // Add the `active` classes and set `aria-hidden` to `false`
+        // Add the `active` classes
         this.modalWindow.classList.add(classes.modalWindowIsVisible);
         this.modalOverlay.classList.add(classes.modalOverlayIsVisible);
-        this.modalWindow.setAttribute('aria-hidden', false);
 
         // Set focusable elements as "inert"
         this.inertElements(true);
@@ -297,10 +296,9 @@ class Launchy {
         this.firstFocusable = null;
         this.lastFocusable = null;
 
-        // Remove the `active` classes and set `aria-hidden` to `true`
+        // Remove the `active` classes
         this.modalWindow.classList.remove(classes.modalWindowIsVisible);
         this.modalOverlay.classList.remove(classes.modalOverlayIsVisible);
-        this.modalWindow.setAttribute('aria-hidden', true);
 
         // Remove "inert" state for focusable elements
         this.inertElements(false);
