@@ -15,7 +15,6 @@
     "reload": "browser-sync reload",
     "release": "bump --version && bump --prompt --tag --grep ./src/launchy.js && cp ./package.json ./dist/npm && cd ./dist/npm && npm publish",
     "precommit": "npm test && npm run build",
-    "report-coverage": "codecov",
     "test": "mocha-headless-chrome -f test/test.html"
   },
   "repository": {
@@ -45,7 +44,6 @@
     "browser-sync": "^2.18.13",
     "chai": "^4.1.2",
     "chai-truthy": "^1.0.0",
-    "codecov": "^2.3.0",
     "concurrently": "^3.5.0",
     "focusable": "^2.0.0",
     "husky": "^0.14.3",

@@ -1,5 +1,23 @@
 const expect = chai.expect;
 
+// https://gist.github.com/callmephilip/3519403
+const fireKey = (el, key) => {
+    let eventObj = null;
+
+    if (document.createEventObject) {
+        eventObj = document.createEventObject();
+        eventObj.keyCode = key;
+        el.fireEvent('onkeydown', eventObj);
+        eventObj.keyCode = key;
+    } else if (document.createEvent) {
+        eventObj = document.createEvent('Events');
+        eventObj.initEvent('keydown', true, true);
+        eventObj.which = key;
+        eventObj.keyCode = key;
+        el.dispatchEvent(eventObj);
+    }
+};
+
 describe('Launchy', () => {
 
     describe('Elements…', () => {
@@ -51,16 +69,21 @@ describe('Launchy', () => {
             expect(document.querySelector('#launchy-dialog-0').getAttribute('aria-modal')).to.be.truthy();
         });
 
-        it('modal window `aria-modal` value to be "true"', () => {
+        it('modal window `aria-modal` value to be true', () => {
             expect(document.querySelector('#launchy-dialog-0').getAttribute('aria-modal')).to.equal('true');
         });
     });
 
-    describe('Open modal…', () => {
+    describe('Show modal…', () => {
 
         beforeEach(() => {
             document.querySelector('#launchy-control-0').focus();
             document.querySelector('#launchy-control-0').click();
+        });
+
+        afterEach(() => {
+            document.querySelector('#launchy-close-control-0').focus();
+            document.querySelector('#launchy-close-control-0').click();
         });
 
         it('modal window to be shown', () => {
@@ -71,9 +94,25 @@ describe('Launchy', () => {
             expect(document.querySelector('#launchy-dialog-0')).to.equal(document.activeElement);
         });
 
+        it('modal launcher to be inert', () => {
+            expect(document.querySelector('#launchy-control-0').getAttribute('inert')).to.equal('');
+            expect(document.querySelector('#launchy-control-0').getAttribute('tabindex')).to.equal('-1');
+            expect(document.querySelector('#launchy-control-0').getAttribute('aria-hidden')).to.equal('true');
+        });
+
+        it('modal controls to _not_ be inert', () => {
+            const modal = document.querySelector('#launchy-dialog-0');
+            const controls = modal.querySelectorAll('a[href]');
+
+            for (const control of Array.from(controls)) {
+                expect(control.getAttribute('inert')).to.be.falsy();
+                expect(control.getAttribute('tabindex')).to.be.falsy();
+                expect(control.getAttribute('aria-hidden')).to.be.falsy();
+            }
+        });
     });
 
-    describe('Closed modal…', () => {
+    describe('Hide modal…', () => {
 
         beforeEach(() => {
             document.querySelector('#launchy-control-0').focus();
@@ -89,7 +128,16 @@ describe('Launchy', () => {
         it('launcher element to have focus', () => {
             expect(document.querySelector('#launchy-control-0')).to.equal(document.activeElement);
         });
+
+        it('modal launcher to _not_ be inert', () => {
+            expect(document.querySelector('#launchy-control-0').getAttribute('inert')).to.be.falsy();
+            expect(document.querySelector('#launchy-control-0').getAttribute('tabindex')).to.be.falsy();
+            expect(document.querySelector('#launchy-control-0').getAttribute('aria-hidden')).to.be.falsy();
+        });
     });
 
-    // Todo: check for inert state on things…
+    // Todo:
+    // check firstFocusable
+    // check lastFocusable
+    // use fireKey() to test `Tab` key press
 });
