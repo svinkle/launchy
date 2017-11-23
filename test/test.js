@@ -1,23 +1,5 @@
 const expect = chai.expect;
 
-// https://gist.github.com/callmephilip/3519403
-const fireKey = (el, key) => {
-    let eventObj = null;
-
-    if (document.createEventObject) {
-        eventObj = document.createEventObject();
-        eventObj.keyCode = key;
-        el.fireEvent('onkeydown', eventObj);
-        eventObj.keyCode = key;
-    } else if (document.createEvent) {
-        eventObj = document.createEvent('Events');
-        eventObj.initEvent('keydown', true, true);
-        eventObj.which = key;
-        eventObj.keyCode = key;
-        el.dispatchEvent(eventObj);
-    }
-};
-
 describe('Launchy', () => {
 
     describe('Elements…', () => {
@@ -61,6 +43,24 @@ describe('Launchy', () => {
                 expect(document.querySelector('#modal-bumper-0')).to.be.truthy();
             });
         });
+
+        describe('Controls:', () => {
+            it('launchy 0 launcher control to be a link', () => {
+                expect(document.querySelector('#launchy-control-0').nodeName.toLowerCase()).to.equal('a');
+            });
+
+            it('launchy 0 close control to be a link', () => {
+                expect(document.querySelector('#launchy-close-control-0').nodeName.toLowerCase()).to.equal('a');
+            });
+
+            it('launchy 1 launcher control to be a button', () => {
+                expect(document.querySelector('#launchy-control-1').nodeName.toLowerCase()).to.equal('button');
+            });
+
+            it('launchy 1 close control to be a button', () => {
+                expect(document.querySelector('#launchy-close-control-1').nodeName.toLowerCase()).to.equal('button');
+            });
+        });
     });
 
     describe('Properties…', () => {
@@ -102,7 +102,7 @@ describe('Launchy', () => {
 
         it('modal controls to _not_ be inert', () => {
             const modal = document.querySelector('#launchy-dialog-0');
-            const controls = modal.querySelectorAll('a[href]');
+            const controls = modal.querySelectorAll('a[href], button');
 
             for (const control of Array.from(controls)) {
                 expect(control.getAttribute('inert')).to.be.falsy();
@@ -141,3 +141,22 @@ describe('Launchy', () => {
     // check lastFocusable
     // use fireKey() to test `Tab` key press
 });
+
+// https://gist.github.com/callmephilip/3519403
+//
+// const fireKey = (el, key) => {
+//     let eventObj = null;
+//
+//     if (document.createEventObject) {
+//         eventObj = document.createEventObject();
+//         eventObj.keyCode = key;
+//         el.fireEvent('onkeydown', eventObj);
+//         eventObj.keyCode = key;
+//     } else if (document.createEvent) {
+//         eventObj = document.createEvent('Events');
+//         eventObj.initEvent('keydown', true, true);
+//         eventObj.which = key;
+//         eventObj.keyCode = key;
+//         el.dispatchEvent(eventObj);
+//     }
+// };

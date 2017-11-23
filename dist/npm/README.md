@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/svinkle/launchy.svg?branch=master)](https://travis-ci.org/svinkle/launchy)
+[![npm version](https://badge.fury.io/js/launchy-modal-window.svg)](https://badge.fury.io/js/launchy-modal-window)
 
 # Launchy! 🚀
 
@@ -43,6 +44,7 @@ Example:
 - **Required**: `data-launchy` -- Attribute is required but the value can be anything
 - **Required**: `data-launchy-text` -- This is the text that will be output to the launcher control
 - Optional: `data-launchy-title` -- The text which appears in the heading of the modal window, recommended for greater a11y context 👍
+- Optional: `data-launchy-button` -- If you'd rather have `button` elements instead of the default `a` elements as launcher and close controls
 
 
 #### Custom Close Controls

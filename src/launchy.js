@@ -20,17 +20,6 @@
 // https://github.com/WICG/inert
 import 'wicg-inert';
 
-// HTML elements
-const htmlElements = {
-    launchModal: 'a',
-    closeModal: 'a',
-    modalWindow: 'div',
-    modalContent: 'div',
-    modalOverlay: 'div',
-    modalBumper: 'div',
-    modalTitle: 'h2'
-};
-
 // CSS classes
 const classes = {
     modalLaunchLink: 'launchy__launch-link',
@@ -47,6 +36,7 @@ const classes = {
 const data = {
     launchyText: 'data-launchy-text',
     launchyTitle: 'data-launchy-title',
+    launchyButton: 'data-launchy-button',
     launchyCustom: {
         close: 'data-launchy-close',
         refocus: 'data-launchy-refocus'
@@ -93,6 +83,7 @@ class Launchy {
 
         // Flags and other objects to be used later
         this.hasTitle = params.title ? true : false;
+        this.useButton = params.button ? true : false;
         this.modalIsVisible = false;
         this.activeElement = null;
         this.shiftKeyIsPressed = false;
@@ -118,25 +109,26 @@ class Launchy {
      * @return {null}
      */
     createElements(params) {
+        console.log(this.useButton);
 
         // Launch control
-        this.launchControl = document.createElement(htmlElements.launchModal);
+        this.launchControl = document.createElement(this.useButton ? 'button' : 'a');
         this.launchControl.id = `${selectors.launchyControl}${this.launchyId}`;
-        this.launchControl.href = `#${selectors.launchyDialog}${this.launchyId}`;
+        this.useButton ? this.launchControl.type = 'button' : this.launchControl.href = `#${selectors.launchyDialog}${this.launchyId}`;
         this.launchControl.classList.add(classes.modalLaunchLink);
         this.launchControl.setAttribute('aria-haspopup', 'dialog');
         this.launchControl.textContent = params.text;
 
         // Close control
-        this.closeControl = document.createElement(htmlElements.closeModal);
+        this.closeControl = document.createElement(this.useButton ? 'button' : 'a');
         this.closeControl.id = `${selectors.launchyCloseControl}${this.launchyId}`;
-        this.closeControl.href = `#${selectors.launchyControl}${this.launchyId}`;
+        this.useButton ? this.closeControl.type = 'button' : this.closeControl.href = `#${selectors.launchyControl}${this.launchyId}`;
         this.closeControl.classList.add(classes.modalCloseLink);
         this.closeControl.setAttribute('aria-label', strings.modalClose);
         this.closeControl.innerHTML = strings.modalCloseHTML;
 
         // Modal window
-        this.modalWindow = document.createElement(htmlElements.modalWindow);
+        this.modalWindow = document.createElement('div');
         this.modalWindow.id = `${selectors.launchyDialog}${this.launchyId}`;
         this.modalWindow.classList.add(classes.modalWindow);
         this.modalWindow.setAttribute('tabindex', -1);
@@ -148,23 +140,23 @@ class Launchy {
         }
 
         // Modal overlay
-        this.modalOverlay = document.createElement(htmlElements.modalOverlay);
+        this.modalOverlay = document.createElement('div');
         this.modalOverlay.id = `${selectors.modalOverlay}${this.launchyId}`;
         this.modalOverlay.classList.add(classes.modalOverlay);
         this.modalOverlay.setAttribute('tabindex', 0);
 
         // Modal bumper
-        this.modalBumper = document.createElement(htmlElements.modalBumper);
+        this.modalBumper = document.createElement('div');
         this.modalBumper.id = `${selectors.modalBumper}${this.launchyId}`;
         this.modalBumper.setAttribute('tabindex', 0);
 
         // Modal content
-        this.modalContent = document.createElement(htmlElements.modalContent);
+        this.modalContent = document.createElement('div');
         this.modalContent.classList.add(classes.modalContent);
 
         // Modal title
         if (this.hasTitle) {
-            this.modalTitle = document.createElement(htmlElements.modalTitle);
+            this.modalTitle = document.createElement('h2');
             this.modalTitle.id = `${selectors.modalTitle}${this.launchyId}`;
             this.modalTitle.classList.add(classes.modalTitle);
             this.modalTitle.textContent = params.title;
@@ -412,11 +404,13 @@ const init = () => {
     const launchyElements = document.querySelectorAll(selectors.launchyElements);
 
     let launchyText = null,
-        launchyTitle = null;
+        launchyTitle = null,
+        launchyButton = null;
 
     for (const launchyElement of Array.from(launchyElements)) {
         launchyText = launchyElement.getAttribute(data.launchyText),
-        launchyTitle = launchyElement.getAttribute(data.launchyTitle);
+        launchyTitle = launchyElement.getAttribute(data.launchyTitle),
+        launchyButton = launchyElement.hasAttribute(data.launchyButton);
 
         // Throw an error if there's no launcher control text attribute
         if (!launchyText) {
@@ -439,7 +433,8 @@ const init = () => {
         const params = {
             target: launchyElement,
             text: launchyText,
-            title: launchyTitle
+            title: launchyTitle,
+            button: launchyButton
         };
 
         // Create a new instance for each found in the DOM
