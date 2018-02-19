@@ -13,7 +13,7 @@
  * Check out the GitHub repo for more information: https://github.com/svinkle/launchy
  *
  * @author Scott Vinkle <svinkle@gmail.com>
- * @version 0.8.1
+ * @version 0.9.2
  * @license MIT
  */
 
