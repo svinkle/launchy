@@ -23,7 +23,7 @@ For more details on the accessibility of modal windows:
 
 ## Demo
 
-- Check out the [demo](https://launchy.io)! 👈
+- Check out the [demo](https://svinkle.github.io/launchy)! 👈
 - Try your own HTML with the [CodePen](https://codepen.io/svinkle/pen/pjVepz/) demo!
 
 ## Usage
