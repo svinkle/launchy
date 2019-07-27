@@ -3,7 +3,7 @@
 
 # Launchy! 🚀
 
-> An accessible modal window! — https://launchy.io
+> An accessible modal window!
 
 ## Features include:
 - Easy to use and implement!
